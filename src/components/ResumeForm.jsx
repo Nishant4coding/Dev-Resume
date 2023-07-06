@@ -109,7 +109,7 @@ const ResumeForm = () => {
         backgroundColor="red"
         position="fixed"
       >
-        <Box w="60%" borderRadius="lg" backgroundColor="red">
+        <Box w="60%" borderRadius="lg" backgroundColor="red" zIndex="10000">
           <Box
             w="100%"
             bg="white"
