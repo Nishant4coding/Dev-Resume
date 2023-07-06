@@ -118,7 +118,7 @@ const ResumeForm = () => {
             left="0"
             p="4"
             boxShadow="md"
-            zIndex="999"
+            zIndex="10000"
           >
             <Box
               position="fixed"
