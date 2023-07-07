@@ -108,7 +108,7 @@ const ResumeForm = () => {
         flexDir="column"
         position="relative"
       >
-        <Box w="60%" borderRadius="lg" backgroundColor="red">
+        <Box w="60%" borderRadius="lg">
           <Box
             w="100%"
             bg="white"
