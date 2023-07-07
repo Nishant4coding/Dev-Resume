@@ -106,10 +106,9 @@ const ResumeForm = () => {
         w="100%"
         px="12px"
         flexDir="column"
-        backgroundColor="red"
-        position="fixed"
+        position="relative"
       >
-        <Box w="60%" borderRadius="lg" backgroundColor="red" zIndex="10001">
+        <Box w="60%" borderRadius="lg">
           <Box
             w="100%"
             bg="white"
@@ -120,12 +119,16 @@ const ResumeForm = () => {
             boxShadow="md"
             zIndex="10000"
           >
+            <Heading zIndex="20001 " textAlign="center">
+              Dev-Resume
+            </Heading>
             <Box
+              zIndex="10000"
               position="fixed"
               alignItems="center"
               justifyContent="center"
               left="20%"
-              top="30px"
+              top="74px"
               height="10px"
               width="65%"
               borderRadius="full"
@@ -133,6 +136,7 @@ const ResumeForm = () => {
               backgroundColor="teal.500"
             />
             <Box
+              zIndex="10000"
               display="flex"
               alignItems="center"
               justifyContent="center"
@@ -161,7 +165,7 @@ const ResumeForm = () => {
             style={{ display: page === 3 ? "none" : "block" }}
           >
             <Box
-              marginTop="50px"
+              marginTop="100px"
               p={4}
               borderRadius="lg"
               bg="rgb(0, 255, 128)"
@@ -203,7 +207,7 @@ const ResumeForm = () => {
             style={{ display: page === 3 ? "none" : "block" }}
           >
             <Box
-              marginTop="50px"
+              marginTop="80px"
               p={8}
               borderRadius="lg"
               bg="rgb(0, 255, 128)"
