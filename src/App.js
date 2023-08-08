@@ -8,7 +8,7 @@ import { BrowserRouter , Router, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div>
-  <BrowserRouter>
+  <BrowserRouter  basename={window.location.pathname || ''}>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/show" element={<ResumeForm />} />
