@@ -21,6 +21,10 @@ import BasicDetails from "./BasicDetailsForm";
 import EduacationDetails from "./EducationDetails";
 import ProfessionalDetails from "./ProfessionalDetailsForm";
 import ResumeTemplate from "./ResumeTemplate";
+import { Link } from "react-router-dom";
+import { FaHome} from 'react-icons/fa';
+
+
 
 const ResumeForm = () => {
   const [page, setPage] = useState(0);
@@ -119,7 +123,7 @@ const ResumeForm = () => {
             boxShadow="md"
             zIndex="10000"
           >
-            <Heading zIndex="20001 " textAlign="center">
+            <Heading zIndex="20001 " textAlign="center" fontSize="30px">
               Dev-Resume
             </Heading>
             <Box
@@ -128,7 +132,7 @@ const ResumeForm = () => {
               alignItems="center"
               justifyContent="center"
               left="20%"
-              top="74px"
+              top="68px"
               height="10px"
               width="65%"
               borderRadius="full"
@@ -153,6 +157,12 @@ const ResumeForm = () => {
             >
               <Text>{page + 1}</Text>
             </Box>
+            <Box>
+            <Center>
+              <Link to="/"><FaHome  style={{ fontSize: '25px' }}/></Link> <span style={{fontWeight:"800", cursor:"pointe"}}> &nbsp; Home</span>
+              
+              </Center>
+              </Box>
           </Box>
         </Box>
       </Center>
