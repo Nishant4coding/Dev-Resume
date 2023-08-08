@@ -106,18 +106,18 @@ const LandingPage = () => {
           </Box>
         </Center>
         <Center>
-      <Card align={"center"}width={"380px"} height={"170px"}   backdropFilter="blur(30px)"
+      <Card align={"center"}width={"350px"} height={"170px"}   backdropFilter="blur(30px)"
 boxShadow={"0 2px 5px rgba(0, 0, 0, 0.3)"}>
         <CardHeader>
           <Heading size="lg">Technology Used</Heading>
         </CardHeader>
         <CardBody>
             <Flex align={"center"}>
-          <Image src={reactimg} width={"60px"} ml={"5px"} mr={"5px"}></Image>
-          <Image src={chakraimg} width={"60px"}  ml={"5px"} mr={"5px"}></Image>
-          <Image src={htmlimg} width={"60px"} ml={"5px"} mr={"5px"}></Image>
-          <Image src={cssimg} width={"60px"} ml={"5px"} mr={"5px"}></Image>
-          <Image src={jsimg} width={"60px"} ml={"5px"} mr={"5px"}></Image>
+          <Image src={reactimg} width={"50px"} ml={"5px"} mr={"5px"}></Image>
+          <Image src={chakraimg} width={"50px"}  ml={"5px"} mr={"5px"}></Image>
+          <Image src={htmlimg} width={"50px"} ml={"5px"} mr={"5px"}></Image>
+          <Image src={cssimg} width={"50px"} ml={"5px"} mr={"5px"}></Image>
+          <Image src={jsimg} width={"50px"} ml={"5px"} mr={"5px"}></Image>
           </Flex>
         </CardBody>
       </Card>
