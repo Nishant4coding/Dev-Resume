@@ -12,11 +12,19 @@ import {
   Button,
   useColorMode,
   useColorModeValue,
+  Card,
+  CardBody,
+  CardHeader,
 } from "@chakra-ui/react";
 import logo from "../logo.png";
 import { motion } from "framer-motion";
 import backgroundImage from "../bg.png";
 import { BsArrowRightSquare } from "react-icons/bs";
+import reactimg from '../react.png'
+import htmlimg from '../html.png'
+import cssimg from '../css.png'
+import jsimg from '../js.png'
+import chakraimg from '../chakraui.png'
 
 const LandingPage = () => {
   const linkColor = useColorModeValue("blue.500", "blue.200");
@@ -41,7 +49,14 @@ const LandingPage = () => {
             <Link to="./show">Get Started</Link>
           </Button>
 
-          <Button colorScheme="teal" size="md" pl={"40px"} pr={"40px"} marginLeft={"20px"} mr={"10px"}>
+          <Button
+            colorScheme="teal"
+            size="md"
+            pl={"40px"}
+            pr={"40px"}
+            marginLeft={"20px"}
+            mr={"10px"}
+          >
             <Link to="#">Login/SignUp</Link>
           </Button>
         </Flex>
@@ -51,27 +66,26 @@ const LandingPage = () => {
         bgRepeat={"no-repeat"}
         bgImage={`url(${backgroundImage})`}
         bgColor={"blackAlpha.100"}
-        
         w="100%"
       >
-        <Center h="70vh">
+        <Center h="45vh">
           <Box textAlign="center">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
             >
-              <Heading size="2xl" fontWeight={700}>Welcome to Dev Resume</Heading>
+              <Heading size="2xl" fontWeight={700}>
+                Welcome to Dev Resume
+              </Heading>
               <Text fontSize="xl" fontWeight={900} mt={4}>
                 Create a professional resume in minutes!
               </Text>
               <Button
-                mt={"80px"}
+                mt={"40px"}
                 color={"black"}
                 backgroundColor={"whatsapp.300"}
-
                 size={"lg"}
-                
               >
                 <Link
                   to="/show"
@@ -91,6 +105,23 @@ const LandingPage = () => {
             </motion.div>
           </Box>
         </Center>
+        <Center>
+      <Card align={"center"}width={"350px"} height={"170px"}   backdropFilter="blur(30px)"
+boxShadow={"0 2px 5px rgba(0, 0, 0, 0.3)"}>
+        <CardHeader>
+          <Heading size="lg">Technology Used</Heading>
+        </CardHeader>
+        <CardBody>
+            <Flex align={"center"}>
+          <Image src={reactimg} width={"60px"}></Image>
+          <Image src={chakraimg} width={"60px"}></Image>
+          <Image src={htmlimg} width={"60px"}></Image>
+          <Image src={cssimg} width={"60px"}></Image>
+          <Image src={jsimg} width={"60px"}></Image>
+          </Flex>
+        </CardBody>
+      </Card>
+      </Center>
       </Box>
     </Box>
   );
