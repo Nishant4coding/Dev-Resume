@@ -133,7 +133,7 @@ const ProfessionalDetails = (props) => {
                 }));
               }}
             />
-            <FormHelperText>Hit enter for newline</FormHelperText>
+            {/* <FormHelperText>Hit enter for newline</FormHelperText> */}
           </FormControl>
         </GridItem>
       </SimpleGrid>
@@ -176,7 +176,7 @@ const ProfessionalDetails = (props) => {
       <FormControl>
         <FormLabel>Summary:</FormLabel>
         <Textarea
-          placeholder="Introduce yourself by pitching your skills & explaining how they can be of value to a company"
+          placeholder="Introduce yourself in few line"
           value={resumeInfo.professional.summary}
           onChange={(e) => {
             const updateValue = {
@@ -194,7 +194,7 @@ const ProfessionalDetails = (props) => {
       <FormControl>
         <FormLabel>Skills:</FormLabel>
         <Textarea
-          placeholder="Communication, Teambuilding, etc.."
+          placeholder="Enter for new points"
           value={resumeInfo.professional.skills}
           onChange={(e) => {
             const updateValue = {
@@ -208,7 +208,7 @@ const ProfessionalDetails = (props) => {
             setResumeInfo(updateResumeInfo);
           }}
         />
-        <FormHelperText>Hit enter for newline</FormHelperText>
+        {/* <FormHelperText>Hit enter for newline</FormHelperText> */}
       </FormControl>
       {workSection}
       <Button

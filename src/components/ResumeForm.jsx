@@ -123,16 +123,14 @@ const ResumeForm = () => {
             boxShadow="md"
             zIndex="10000"
           >
-            <Heading zIndex="20001 " textAlign="center" fontSize="30px">
-              Dev-Resume
-            </Heading>
+            
             <Box
               zIndex="10000"
               position="fixed"
               alignItems="center"
               justifyContent="center"
               left="20%"
-              top="68px"
+              top="30px"
               height="10px"
               width="65%"
               borderRadius="full"

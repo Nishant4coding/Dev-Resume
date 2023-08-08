@@ -51,6 +51,7 @@ const LandingPage = () => {
         bgRepeat={"no-repeat"}
         bgImage={`url(${backgroundImage})`}
         bgColor={"blackAlpha.100"}
+        
         w="100%"
       >
         <Center h="70vh">
@@ -60,15 +61,17 @@ const LandingPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
             >
-              <Heading size="2xl">Welcome to Dev Resume</Heading>
-              <Text fontSize="xl" mt={4}>
+              <Heading size="2xl" fontWeight={700}>Welcome to Dev Resume</Heading>
+              <Text fontSize="xl" fontWeight={900} mt={4}>
                 Create a professional resume in minutes!
               </Text>
               <Button
                 mt={"80px"}
-                colorScheme="whatsapp"
+                color={"black"}
+                backgroundColor={"whatsapp.300"}
+
                 size={"lg"}
-                variant={"outline"}
+                
               >
                 <Link
                   to="/show"

@@ -221,6 +221,7 @@ const ResumeTemplate = (props) => {
               window.location.reload();
             }}
           >
+            
             Create New
           </Button>
         </Center>
