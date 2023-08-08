@@ -23,13 +23,8 @@ root.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/show" element={<ResumeForm />} />
-      </Routes>
-    </BrowserRouter>
-    <Footer/>
+    
+    
     </ChakraProvider>
   </React.StrictMode>
 );
