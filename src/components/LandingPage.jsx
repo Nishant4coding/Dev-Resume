@@ -20,11 +20,11 @@ import logo from "../logo.png";
 import { motion } from "framer-motion";
 import backgroundImage from "../bg.png";
 import { BsArrowRightSquare } from "react-icons/bs";
-import reactimg from '../react.png'
-import htmlimg from '../html.png'
-import cssimg from '../css.png'
-import jsimg from '../js.png'
-import chakraimg from '../chakraui.png'
+import reactimg from "../react.png";
+import htmlimg from "../html.png";
+import cssimg from "../css.png";
+import jsimg from "../js.png";
+import chakraimg from "../chakraui.png";
 
 const LandingPage = () => {
   const linkColor = useColorModeValue("blue.500", "blue.200");
@@ -57,7 +57,7 @@ const LandingPage = () => {
             marginLeft={"20px"}
             mr={"10px"}
           >
-            <Link to="#">Login/SignUp</Link>
+            <Link to="/auth">Login/SignUp</Link>
           </Button>
         </Flex>
       </Box>
@@ -106,22 +106,47 @@ const LandingPage = () => {
           </Box>
         </Center>
         <Center>
-      <Card align={"center"}width={"350px"} height={"170px"}   backdropFilter="blur(30px)"
-boxShadow={"0 2px 5px rgba(0, 0, 0, 0.3)"}>
-        <CardHeader>
-          <Heading size="lg">Technology Used</Heading>
-        </CardHeader>
-        <CardBody>
-            <Flex align={"center"}>
-          <Image src={reactimg} width={"50px"} ml={"5px"} mr={"5px"}></Image>
-          <Image src={chakraimg} width={"50px"}  ml={"5px"} mr={"5px"}></Image>
-          <Image src={htmlimg} width={"50px"} ml={"5px"} mr={"5px"}></Image>
-          <Image src={cssimg} width={"50px"} ml={"5px"} mr={"5px"}></Image>
-          <Image src={jsimg} width={"50px"} ml={"5px"} mr={"5px"}></Image>
-          </Flex>
-        </CardBody>
-      </Card>
-      </Center>
+          <Card
+            align={"center"}
+            width={"350px"}
+            height={"170px"}
+            backdropFilter="blur(30px)"
+            boxShadow={"0 2px 5px rgba(0, 0, 0, 0.3)"}
+          >
+            <CardHeader>
+              <Heading size="lg">Technology Used</Heading>
+            </CardHeader>
+            <CardBody>
+              <Flex align={"center"}>
+                <Image
+                  src={reactimg}
+                  width={"50px"}
+                  ml={"5px"}
+                  mr={"5px"}
+                ></Image>
+                <Image
+                  src={chakraimg}
+                  width={"50px"}
+                  ml={"5px"}
+                  mr={"5px"}
+                ></Image>
+                <Image
+                  src={htmlimg}
+                  width={"50px"}
+                  ml={"5px"}
+                  mr={"5px"}
+                ></Image>
+                <Image
+                  src={cssimg}
+                  width={"50px"}
+                  ml={"5px"}
+                  mr={"5px"}
+                ></Image>
+                <Image src={jsimg} width={"50px"} ml={"5px"} mr={"5px"}></Image>
+              </Flex>
+            </CardBody>
+          </Card>
+        </Center>
       </Box>
     </Box>
   );

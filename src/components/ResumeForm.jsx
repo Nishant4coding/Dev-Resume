@@ -22,8 +22,8 @@ import EduacationDetails from "./EducationDetails";
 import ProfessionalDetails from "./ProfessionalDetailsForm";
 import ResumeTemplate from "./ResumeTemplate";
 import { Link } from "react-router-dom";
-import { FaHome} from 'react-icons/fa';
-
+import { FaHome } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 
 const ResumeForm = () => {
@@ -123,7 +123,6 @@ const ResumeForm = () => {
             boxShadow="md"
             zIndex="10000"
           >
-            
             <Box
               zIndex="10000"
               position="fixed"
@@ -156,11 +155,22 @@ const ResumeForm = () => {
               <Text>{page + 1}</Text>
             </Box>
             <Box>
-            <Center>
-              <Link to="/"><FaHome  style={{ fontSize: '25px' }}/></Link> <span style={{fontWeight:"800", cursor:"pointe"}}> &nbsp; Home</span>
-              
+              <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              >
+              <Center>
+                <Link to="/">
+                  <FaHome style={{ fontSize: "25px" }} />
+                </Link>{" "}
+                <span style={{ fontWeight: "800", cursor: "pointe" }}>
+                  {" "}
+                  &nbsp; Home
+                </span>
               </Center>
-              </Box>
+                </motion.div>
+            </Box>
           </Box>
         </Box>
       </Center>
