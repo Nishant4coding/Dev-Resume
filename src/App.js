@@ -9,7 +9,8 @@ import Auth from "./components/Auth";
 function App() {
   return (
     <div>
-  <BrowserRouter  basename={window.location.pathname || ''}>
+  {/* <BrowserRouter  basename={window.location.pathname || ''}> */}
+  <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/show" element={<ResumeForm />} />

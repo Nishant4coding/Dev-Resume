@@ -128,7 +128,7 @@ const ResumeForm = () => {
               position="fixed"
               alignItems="center"
               justifyContent="center"
-              left="20%"
+              left="18%"
               top="30px"
               height="10px"
               width="65%"
