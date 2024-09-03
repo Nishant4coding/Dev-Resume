@@ -48,7 +48,7 @@ const ResumeTemplate = (props) => {
     // Convert the resume to PDF using ReactToPrint's reference
     const resumeHtml = ref.current.innerHTML;
     try {
-      const response = await fetch(`https://script.google.com/macros/s/${process.env.SCRIPT_STRING}/exec`, {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbxwhtgOHwIBncUq7O1HzstUuTpbOpSiNG_mgC9vcDG-1HbjWxx1LaXx6LpWVUXAaQdYgg/exec", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
