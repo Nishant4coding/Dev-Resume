@@ -5,6 +5,8 @@ import ResumeForm from "./components/ResumeForm";
 import React from "react";
 import { BrowserRouter , Router, Routes, Route } from "react-router-dom";
 import Auth from "./components/Auth";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/show" element={<ResumeForm />} />
         <Route path="/auth" element={<Auth/>}/>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
     <Footer/>

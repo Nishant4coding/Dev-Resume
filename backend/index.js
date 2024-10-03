@@ -11,7 +11,7 @@ const port = 5000;
   // })
 app.use(cors(
   {
-    origin:["http://localhost:3000"],
+    origin:["https://laughing-space-xylophone-pq5gjrq59pjf76xg-3000.app.github.dev"],
     methods:["POST","GET","PUT","DELETE"],
     credentials:true
   }
@@ -19,11 +19,11 @@ app.use(cors(
 app.use(express.json())
 //Available Routes
 app.use('/api/auth',require('./routes/auth'))
-app.use('/api/invoice',require('./routes/invoice'))
+app.use('/api/resume',require('./routes/resume'))
 
 app.listen(port, () => {
-  console.log(`Invoice Box listening at port ${port}`);
+  console.log(`Dev Resume listening at port ${port}`);
 });
 app.get('/',(req,res)=>{
-  res.json("invoice box")
+  res.json("dev resume")
 })

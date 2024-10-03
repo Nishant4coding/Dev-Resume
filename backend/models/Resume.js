@@ -1,7 +1,7 @@
 const mongoose= require('mongoose');
 const {Schema}= mongoose;
 
-const InvoiceSchema = new Schema({
+const ResumeSchema = new Schema({
   user:{
     type: mongoose.Schema.Types.ObjectId,
     ref:'user'
@@ -28,4 +28,4 @@ const InvoiceSchema = new Schema({
     default: Date.now
    }
   });
-module.exports= mongoose.model('invoice', InvoiceSchema)
+module.exports= mongoose.model('resume', ResumeSchema)

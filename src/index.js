@@ -10,6 +10,8 @@ import LandingPage from './components/LandingPage';
 import {BrowserRouter, Routes,Route}  from "react-router-dom";
 import ResumeForm from './components/ResumeForm';
 import Footer from './components/Footer';
+import store from './store/store';
+import { Provider } from 'react-redux';
 
 
 const theme = extendTheme({
@@ -21,11 +23,13 @@ const theme = extendTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+     <Provider store={store}>
     <ChakraProvider theme={theme}>
       
     <App/>
     
     </ChakraProvider>
+    </Provider>
   </React.StrictMode>
 );
 

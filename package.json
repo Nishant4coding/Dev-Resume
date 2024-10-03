@@ -10,6 +10,7 @@
     "@fontsource/open-sans": "^4.5.13",
     "@fontsource/poppins": "^4.5.10",
     "@react-icons/all-files": "^4.1.0",
+    "@reduxjs/toolkit": "^2.2.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -17,6 +18,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
+    "react-redux": "^9.1.2",
     "react-scripts": "5.0.1",
     "react-to-print": "^2.14.10",
     "web-vitals": "^2.1.4"
