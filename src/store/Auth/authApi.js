@@ -19,7 +19,7 @@ export const login = async (credentials) => {
 };
 
 export const signup = async (userData) => {
-  const response = await fetch(`${BASE_URL}/signup`, {
+  const response = await fetch(`${BASE_URL}/createuser`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

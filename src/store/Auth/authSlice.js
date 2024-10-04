@@ -1,6 +1,6 @@
 // src/store/authSlice.js
 import { createSlice } from '@reduxjs/toolkit';
-import { login } from './authApi';
+import { login, signup } from './authApi';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -38,6 +38,16 @@ export const loginUser = (credentials) => async (dispatch) => {
   try {
     const userData = await login(credentials);
     dispatch(loginSuccess(userData));
+  } catch (error) {
+    dispatch(loginFailure(error.message));
+  }
+};
+
+export const signupUser = (userData) => async (dispatch) => {
+  dispatch(loginRequest());
+  try {
+    const response = await signup(userData);
+    dispatch(loginSuccess(response));
   } catch (error) {
     dispatch(loginFailure(error.message));
   }

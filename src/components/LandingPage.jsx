@@ -26,9 +26,10 @@ import cssimg from "../css.png";
 import jsimg from "../js.png";
 import chakraimg from "../chakraui.png";
 
+
 const LandingPage = () => {
+  const token = localStorage.getItem("token");
   const linkColor = useColorModeValue("blue.500", "blue.200");
-  const bgColor = useColorModeValue("white", "gray.800");
 
   return (
     <Box>
@@ -56,8 +57,14 @@ const LandingPage = () => {
             pr={"40px"}
             marginLeft={"20px"}
             mr={"10px"}
-          >
-            <Link to="/auth">Login/SignUp</Link>
+          >{
+            token ? (
+              <Link to="/dashboard">Dashboard</Link>
+            ) : (
+              <Link to="/login">Login {">"}</Link>
+            )
+          }
+            {/* <Link to="/auth">Login/SignUp</Link> */}
           </Button>
         </Flex>
       </Box>

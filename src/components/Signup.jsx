@@ -1,119 +1,141 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Box,
+  Heading,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  VStack,
+  Alert,
+  AlertIcon,
+} from "@chakra-ui/react";
+import { useDispatch } from 'react-redux';
 import Footer from "./Footer";
+import { signupUser } from "../store/Auth/authSlice";
 
 const Signup = (props) => {
-
   const navigate = useNavigate();
-    const [credentials, setCredentials]= useState({name :"" ,email:"", password:"", cpassword:""})
+  const dispatch = useDispatch();
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+    cpassword: "",
+  });
+  const [error, setError] = useState(null);
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      const {name,email,password}= credentials;
-      if(password != credentials.cpassword){
-        props.showAlert("error","Password and Confirm password mismatch");
-        return;
-      }
-      const response = await fetch("http://localhost:5000/api/auth/createuser",{
-        method: 'POST',
-        headers:{
-          'Content-Type':'application/json',
-        },
-        body:JSON.stringify({name,email,password})
-      });
-      const json= await response.json()
-      
-      console.log(json)
-      if(json.success){
-        localStorage.setItem('token',json.authtoken);
-        //redirect
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { name, email, password } = credentials;
+    if (password !== credentials.cpassword) {
+      setError("Password and Confirm password mismatch");
+      return;
+    }
+
+    // Dispatch the signupUser thunk
+    dispatch(signupUser({ name, email, password })).then((response) => {
+      if (response.meta.requestStatus === 'fulfilled') {
         navigate("/");
-        props.showAlert("success","Account Created Successfully");
+        props.showAlert("success", "Account Created Successfully");
+      } else {
+        setError(response.payload || "Invalid Information");
       }
-      else{
-        let e= json.error;
-        if(json.error== undefined){
-          e="Invalid Information"
-        }
-        props.showAlert("error",e);
-      }
-    };
-    const onChange = (e) => {
-      setCredentials({...credentials, [e.target.name]: e.target.value });
-    };
+    });
+  };
+
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
 
   return (
-    <div className="content" >
-       <Link className="back" to="/about">
-      <i  style={{
-          fontSize: "25px",
-         
-          fontFamily: " FontAwesome",
-        }} className="fa fa-arrow-left"></i>
+    <Box maxW="lg" mx="auto" mt={8} p={6} boxShadow="lg" rounded="md" bg="white">
+      <Link to="/about">
+        <Button variant="link" colorScheme="blue" mb={4}>
+          <i className="fa fa-arrow-left" style={{ marginRight: "8px" }}></i>
+          Back
+        </Button>
       </Link>
-        <span className="invoiceF">Sign Up</span>
-        <form id="loginFrame" onSubmit={handleSubmit}>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            // onBlur={onBlur}
-            id="name"
-            name="name"
-            // value={invoice.title}
-            onChange={onChange}
-            placeholder="Enter your Name.."
-          /><br/>
 
-          <label style={{lineHeight:"80px"}} htmlFor="email">E-mail:</label>
-          <input
-            type="email"
-            // onBlur={onBlur}
-            id="email"
-            name="email"
-            // value={invoice.title}
-            onChange={onChange}
-            placeholder="Enter your email.."
-          />
-          <br/>
-          {/* <br/> */}
-          
-          <label htmlFor="password" style={{lineHeight:"50px"}}>Password:</label>
-          <input style={{marginBottom:"30px"}}
-            type="password"
-            name="password"
-            id="password"
-            // value={invoice.tag}
-            onChange={onChange}
-            placeholder="type password"
-            required
-            minLength={5}
-          />
-          <br />
-          <label htmlFor="cpassword" style={{lineHeight:"50px"}}> Re-enter:</label>
-          <input style={{marginBottom:"30px"}}
-            type="password"
-            name="cpassword"
-            id="cpassword"
-            // value={invoice.tag}
-            onChange={onChange}
-            placeholder="confirm password"
-            required
-            minLength={5}
-          />
-          <br />
-        
-          {/* <br /> */}
-          {/* <div className="atleast"><small style={{marginTop:"0px",}}>*Enter atleast 5 characters</small></div> */}
+      <Heading as="h2" size="lg" textAlign="center" mb={6}>
+        Sign Up
+      </Heading>
 
-          <button  type="submit">
-          Signup
-          </button>
-          
-        </form>
-        <Footer/>
-      </div>
-  )
-}
+      {error && (
+        <Alert status="error" mb={4}>
+          <AlertIcon />
+          {error}
+        </Alert>
+      )}
 
-export default Signup
+      <form onSubmit={handleSubmit}>
+        <VStack spacing={4} align="stretch">
+          <FormControl isRequired>
+            <FormLabel htmlFor="name">Name</FormLabel>
+            <Input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Enter your name"
+              value={credentials.name}
+              onChange={onChange}
+            />
+          </FormControl>
+
+          <FormControl isRequired>
+            <FormLabel htmlFor="email">E-mail</FormLabel>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Enter your email"
+              value={credentials.email}
+              onChange={onChange}
+            />
+          </FormControl>
+
+          <FormControl isRequired>
+            <FormLabel htmlFor="password">Password</FormLabel>
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              value={credentials.password}
+              onChange={onChange}
+              minLength={5}
+            />
+          </FormControl>
+
+          <FormControl isRequired>
+            <FormLabel htmlFor="cpassword">Confirm Password</FormLabel>
+            <Input
+              id="cpassword"
+              name="cpassword"
+              type="password"
+              placeholder="Re-enter your password"
+              value={credentials.cpassword}
+              onChange={onChange}
+              minLength={5}
+            />
+          </FormControl>
+
+          <Button
+            type="submit"
+            colorScheme="blue"
+            size="lg"
+            mt={4}
+            w="full"
+          >
+            Sign Up
+          </Button>
+        </VStack>
+      </form>
+
+      <Footer />
+    </Box>
+  );
+};
+
+export default Signup;

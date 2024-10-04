@@ -11,7 +11,7 @@ const port = 5000;
   // })
 app.use(cors(
   {
-    origin:["https://laughing-space-xylophone-pq5gjrq59pjf76xg-3000.app.github.dev"],
+    origin:["http://localhost:3000"],
     methods:["POST","GET","PUT","DELETE"],
     credentials:true
   }
