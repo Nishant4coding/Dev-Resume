@@ -10,6 +10,7 @@ export const login = async (credentials) => {
     },
     body: JSON.stringify(credentials),
   });
+  console.log("login",response);
 
   if (!response.ok) {
     throw new Error('Login failed');
@@ -28,7 +29,7 @@ export const signup = async (userData) => {
   });
 
   if (!response.ok) {
-    throw new Error('Signup failed');
+    throw new Error(response.statusText);
   }
 
   return await response.json();

@@ -1,34 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import {
   Box,
-  Flex,
-  Image,
-  Spacer,
-  Text,
-  Heading,
-  Center,
-  Link as ChakraLink,
   Button,
-  useColorMode,
-  useColorModeValue,
   Card,
   CardBody,
   CardHeader,
+  Center,
+  Link as ChakraLink,
+  Flex,
+  Heading,
+  Image,
+  Spacer,
+  Text,
+  useColorModeValue
 } from "@chakra-ui/react";
-import logo from "../logo.png";
 import { motion } from "framer-motion";
-import backgroundImage from "../bg.png";
+import React from "react";
 import { BsArrowRightSquare } from "react-icons/bs";
-import reactimg from "../react.png";
-import htmlimg from "../html.png";
-import cssimg from "../css.png";
-import jsimg from "../js.png";
+import { Link } from "react-router-dom";
+import backgroundImage from "../bg.png";
 import chakraimg from "../chakraui.png";
+import cssimg from "../css.png";
+import htmlimg from "../html.png";
+import jsimg from "../js.png";
+import logo from "../logo.png";
+import reactimg from "../react.png";
 
 
 const LandingPage = () => {
   const token = localStorage.getItem("token");
+
   const linkColor = useColorModeValue("blue.500", "blue.200");
 
   return (
@@ -47,7 +47,13 @@ const LandingPage = () => {
           </ChakraLink>
           <Spacer />
           <Button colorScheme="teal" size="md" pl={"30px"} pr={"30px"}>
-            <Link to="./show">Get Started</Link>
+          {
+            token ? (
+              <Link to="/show">Get Started</Link>
+            ) : (
+              <Link to="/login">Login to start {">"}</Link>
+            )
+          }
           </Button>
 
           <Button
@@ -59,7 +65,7 @@ const LandingPage = () => {
             mr={"10px"}
           >{
             token ? (
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/user">Profile</Link>
             ) : (
               <Link to="/login">Login {">"}</Link>
             )

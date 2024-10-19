@@ -1,23 +1,42 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginRequest, loginSuccess, loginFailure, loginUser } from '../store/Auth/authSlice';
+import { loginUser } from '../store/Auth/authSlice';
 import {
-  Box, Button, FormControl, FormLabel, Input, Heading, Text, VStack, Alert, AlertIcon, Spinner
+  Box, Button, FormControl, FormLabel, Input, Heading, Text, VStack, Alert, AlertIcon
 } from "@chakra-ui/react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.auth);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Dispatch the loginUser thunk
-    dispatch(loginUser({ email, password }));
+    
+    dispatch(loginUser({ email, password })).then((response) => {
+      if (response && response.payload) {
+        const { success, authtoken } = response.payload;
+  
+        if (success) {
+          // Store the token in localStorage
+          localStorage.setItem('token', authtoken);
+          console.log("Login successful");
+  
+          // Navigate to the home page
+          navigate("/");
+        } else {
+          console.log(response.payload.error || "Invalid login credentials");
+        }
+      }
+    }).catch((error) => {
+      console.error("Error during Login:", error);
+      console.log("An error occurred during Login.");
+    });
   };
+  
 
   return (
     <Box
@@ -67,8 +86,7 @@ const Login = () => {
           </VStack>
         </form>
 
-        {loading && <Spinner />}
-        
+        {/* Only show the error message if there's an error */}
         {error && (
           <Alert status="error" borderRadius="md">
             <AlertIcon />

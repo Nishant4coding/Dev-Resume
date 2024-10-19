@@ -33,24 +33,38 @@ const authSlice = createSlice({
 export const { loginRequest, loginSuccess, loginFailure, logout } = authSlice.actions;
 
 // Thunk to handle login
+// src/store/Auth/authSlice.js
 export const loginUser = (credentials) => async (dispatch) => {
   dispatch(loginRequest());
   try {
     const userData = await login(credentials);
     dispatch(loginSuccess(userData));
+    
+    // Store token in local storage
+    if (userData.token) {
+      localStorage.setItem('token', userData.token);
+    }
+
+    return { payload: { success: true, ...userData } }; 
   } catch (error) {
     dispatch(loginFailure(error.message));
+    return { payload: { success: false, message: error.message } }; 
   }
 };
+
 
 export const signupUser = (userData) => async (dispatch) => {
   dispatch(loginRequest());
   try {
     const response = await signup(userData);
     dispatch(loginSuccess(response));
+
+    return { payload: { success: true, ...response } }; 
   } catch (error) {
     dispatch(loginFailure(error.message));
+    return { payload: { success: false, message: error.message } }; 
   }
 };
+
 
 export default authSlice.reducer;

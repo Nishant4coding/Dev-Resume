@@ -25,24 +25,34 @@ const Signup = (props) => {
     cpassword: "",
   });
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const { name, email, password } = credentials;
     if (password !== credentials.cpassword) {
       setError("Password and Confirm password mismatch");
       return;
     }
-
+  
     // Dispatch the signupUser thunk
     dispatch(signupUser({ name, email, password })).then((response) => {
-      if (response.meta.requestStatus === 'fulfilled') {
+      if (response && response.payload && response.payload.success) {
+        const { authtoken } = response.payload;
+        localStorage.setItem('token', authtoken);
+        console.log("Signup successful");
         navigate("/");
         props.showAlert("success", "Account Created Successfully");
       } else {
-        setError(response.payload || "Invalid Information");
+        setError(response?.payload?.message || "Invalid Information");
       }
+    }).catch((error) => {
+      console.error("Error during signup:", error);
+      setError("An error occurred during signup.");
     });
+    setLoading(false); 
   };
 
   const onChange = (e) => {
