@@ -25,7 +25,7 @@ const Signup = (props) => {
     cpassword: "",
   });
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [ setLoading] = useState(false);
 
 
   const handleSubmit = async (e) => {

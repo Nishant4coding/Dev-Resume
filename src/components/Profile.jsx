@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Flex,
@@ -12,50 +12,23 @@ import {
   Divider,
   Spinner,
 } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { fetchUserProfile, logoutUser } from "../store/Users/userSlice";
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [profileData, setProfileData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const fetchProfileData = async () => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      setError("Please log in to view your profile.");
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const response = await fetch("http://localhost:5000/api/auth/getuser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authToken: token,
-        },
-      });
-
-      const data = await response.json();
-      setLoading(false);
-
-      if (response.status === 401) {
-        setError("Unauthorized access. Please log in.");
-      } else {
-        setProfileData(data);
-        setError(null);
-      }
-    } catch (error) {
-      setError("Failed to fetch profile data.");
-      setLoading(false);
-    }
-  };
-
+  const { profileData, error, loading } = useSelector((state) => state.user);
+  
   useEffect(() => {
-    fetchProfileData();
-  }, []);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    } else {
+      dispatch(fetchUserProfile(token)); 
+    }
+  }, [dispatch, navigate]);
 
   if (loading) {
     return (
@@ -81,10 +54,10 @@ const Profile = () => {
         {/* Sidebar */}
         <GridItem colSpan={[6, 2, 2]} bg="gray.100" p={5} borderRadius="lg">
           <Flex direction="column" align="center">
-            <Avatar size="2xl" name={profileData.name} mb={4} />
-            <Heading size="lg">{profileData.name}</Heading>
+            <Avatar size="2xl" name={profileData?.name} mb={4} />
+            <Heading size="lg">{profileData?.name}</Heading>
             <Text fontSize="md" color="gray.500">
-              {profileData.email}
+              {profileData?.email}
             </Text>
             <Button mt={5} colorScheme="teal" width="100%">
               Edit Profile
@@ -94,8 +67,8 @@ const Profile = () => {
               colorScheme="red"
               width="100%"
               onClick={() => {
-                localStorage.removeItem("token"); // Remove token from localStorage
-                window.location.href = "/login"; // Redirect to login page
+                dispatch(logoutUser());
+                navigate("/login");
               }}
             >
               Logout
@@ -121,7 +94,7 @@ const Profile = () => {
               <Text fontSize="lg" fontWeight="bold">
                 Joined On
               </Text>
-              <Text>{new Date(profileData.date).toLocaleDateString()}</Text>
+              <Text>{new Date(profileData?.date).toLocaleDateString()}</Text>
             </Box>
 
             <Box p={5} bg="blue.100" borderRadius="lg" width="48%" mb={4}>
