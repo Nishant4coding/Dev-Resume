@@ -11,7 +11,7 @@ import {
   Alert,
   AlertIcon,
 } from "@chakra-ui/react";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import Footer from "./Footer";
 import { signupUser } from "../store/Auth/authSlice";
 
@@ -25,34 +25,35 @@ const Signup = (props) => {
     cpassword: "",
   });
   const [error, setError] = useState(null);
-  const [ setLoading] = useState(false);
-
+  // const [setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
     const { name, email, password } = credentials;
     if (password !== credentials.cpassword) {
       setError("Password and Confirm password mismatch");
       return;
     }
-  
+
     // Dispatch the signupUser thunk
-    dispatch(signupUser({ name, email, password })).then((response) => {
-      if (response && response.payload && response.payload.success) {
-        const { authtoken } = response.payload;
-        localStorage.setItem('token', authtoken);
-        console.log("Signup successful");
-        navigate("/");
-        props.showAlert("success", "Account Created Successfully");
-      } else {
-        setError(response?.payload?.message || "Invalid Information");
-      }
-    }).catch((error) => {
-      console.error("Error during signup:", error);
-      setError("An error occurred during signup.");
-    });
-    setLoading(false); 
+    dispatch(signupUser({ name, email, password }))
+      .then((response) => {
+        if (response && response.payload && response.payload.success) {
+          const { authtoken } = response.payload;
+          localStorage.setItem("token", authtoken);
+          console.log("Signup successful");
+          navigate("/");
+          props.showAlert("success", "Account Created Successfully");
+        } else {
+          setError(response?.payload?.message || "Invalid Information");
+        }
+      })
+      .catch((error) => {
+        console.error("Error during signup:", error);
+        setError("An error occurred during signup.");
+      });
+    // setLoading(false);
   };
 
   const onChange = (e) => {
@@ -60,8 +61,16 @@ const Signup = (props) => {
   };
 
   return (
-    <Box maxW="lg" mx="auto" mt={8} p={6} boxShadow="lg" rounded="md" bg="white">
-      <Link to="/about">
+    <Box
+      maxW="lg"
+      mx="auto"
+      mt={8}
+      p={6}
+      boxShadow="lg"
+      rounded="md"
+      bg="white"
+    >
+      <Link to="/login">
         <Button variant="link" colorScheme="blue" mb={4}>
           <i className="fa fa-arrow-left" style={{ marginRight: "8px" }}></i>
           Back
@@ -131,13 +140,7 @@ const Signup = (props) => {
             />
           </FormControl>
 
-          <Button
-            type="submit"
-            colorScheme="blue"
-            size="lg"
-            mt={4}
-            w="full"
-          >
+          <Button type="submit" colorScheme="blue" size="lg" mt={4} w="full">
             Sign Up
           </Button>
         </VStack>
