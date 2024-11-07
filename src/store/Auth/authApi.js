@@ -4,6 +4,7 @@ const BASE_URL = "https://dev-resume-backend.vercel.app/api/auth"; // Adjust thi
 export const login = async (credentials) => {
   const response = await fetch(`${BASE_URL}/login`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -21,6 +22,7 @@ export const login = async (credentials) => {
 export const signup = async (userData) => {
   const response = await fetch(`${BASE_URL}/createuser`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },

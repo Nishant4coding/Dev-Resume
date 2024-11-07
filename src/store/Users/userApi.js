@@ -6,6 +6,7 @@ export const getUserProfile = async (token) => {
   try {
     const response = await fetch(`${BASE_URL}/getuser`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         authToken: token,
