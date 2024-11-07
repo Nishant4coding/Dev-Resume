@@ -9,16 +9,13 @@ const port = 5000;
 // app.get('/',(req,res)=>{
 //   res.send('Hi founder and Ceo')
 // })
-app.use((req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://createyourresume.vercel.app"
-  );
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
+app.use(
+  cors({
+    origin: "https://createyourresume.vercel.app", // Specific origin here
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true, // Allow credentials to be sent
+  })
+);
 
 app.options("*", cors());
 
