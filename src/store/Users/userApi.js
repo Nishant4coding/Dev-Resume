@@ -1,6 +1,6 @@
 // src/api/userApi.js
 
-const BASE_URL = "http://localhost:5000/api/auth";
+const BASE_URL = "https://dev-resume-backend.vercel.app/api/auth";
 
 export const getUserProfile = async (token) => {
   try {
