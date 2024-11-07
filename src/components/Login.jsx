@@ -1,42 +1,52 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../store/Auth/authSlice';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../store/Auth/authSlice";
 import {
-  Box, Button, FormControl, FormLabel, Input, Heading, Text, VStack, Alert, AlertIcon
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Heading,
+  Text,
+  VStack,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.auth);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
-    dispatch(loginUser({ email, password })).then((response) => {
-      if (response && response.payload) {
-        const { success, authtoken } = response.payload;
-  
-        if (success) {
-          // Store the token in localStorage
-          localStorage.setItem('token', authtoken);
-          console.log("Login successful");
-  
-          // Navigate to the home page
-          navigate("/");
-        } else {
-          console.log(response.payload.error || "Invalid login credentials");
+
+    dispatch(loginUser({ email, password }))
+      .then((response) => {
+        if (response && response.payload) {
+          const { success, authtoken } = response.payload;
+
+          if (success) {
+            // Store the token in localStorage
+            localStorage.setItem("token", authtoken);
+            console.log("Login successful");
+
+            // Navigate to the home page
+            navigate("/");
+          } else {
+            console.log(response.payload.message);
+          }
         }
-      }
-    }).catch((error) => {
-      console.error("Error during Login:", error);
-      console.log("An error occurred during Login.");
-    });
+      })
+      .catch((error) => {
+        console.error("Error during Login:", error);
+        console.log("An error occurred during Login.");
+      });
   };
-  
 
   return (
     <Box
@@ -52,7 +62,7 @@ const Login = () => {
       <VStack spacing={6}>
         <Heading size="lg">Login</Heading>
 
-        <form onSubmit={handleLogin} style={{ width: '100%' }}>
+        <form onSubmit={handleLogin} style={{ width: "100%" }}>
           <VStack spacing={4}>
             <FormControl isRequired>
               <FormLabel>Email</FormLabel>
@@ -94,7 +104,9 @@ const Login = () => {
           </Alert>
         )}
 
-        <Text>Don't have an account? <Link to="/signup"> Sign up!</Link></Text>
+        <Text>
+          Don't have an account? <Link to="/signup"> Sign up!</Link>
+        </Text>
       </VStack>
     </Box>
   );
