@@ -11,7 +11,7 @@ const port = 5000;
 // })
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://createyourresume.vercel.app"],
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
   })
