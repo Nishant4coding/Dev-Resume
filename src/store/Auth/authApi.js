@@ -1,19 +1,18 @@
-
 // src/api/authApi.js
-const BASE_URL = 'http://localhost:5000/api/auth'; // Adjust this to your backend URL
+const BASE_URL = "https://dev-resume-backend.vercel.app/api/auth"; // Adjust this to your backend URL
 
 export const login = async (credentials) => {
   const response = await fetch(`${BASE_URL}/login`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(credentials),
   });
-  console.log("login",response);
+  console.log("login", response);
 
   if (!response.ok) {
-    throw new Error('Login failed');
+    throw new Error("Login failed");
   }
 
   return await response.json();
@@ -21,9 +20,9 @@ export const login = async (credentials) => {
 
 export const signup = async (userData) => {
   const response = await fetch(`${BASE_URL}/createuser`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(userData),
   });
